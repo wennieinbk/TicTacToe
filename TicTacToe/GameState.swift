@@ -9,7 +9,7 @@ import Foundation
 
 class GameState: ObservableObject
 {
-    @Published var board = [[Cell]]()
+    @Published var board = [Cell]()
     @Published var turn = Tile.Cross
     @Published var circlesScore = 0
     @Published var crossesScore = 0
@@ -23,14 +23,14 @@ class GameState: ObservableObject
         resetBoard()
     }
 
-    func placeTile(_ row: Int,_ column: Int)
+    func placeTile(_ piece: Int)
     {
-        if(board[row][column].tile != Tile.Empty)
+        if(board[piece].tile != Tile.Empty)
         {
             return
         }
 
-        board[row][column].tile = turn == Tile.Cross ? Tile.Cross : Tile.Circle
+        board[piece].tile = turn == Tile.Cross ? Tile.Cross : Tile.Circle
 
 
         if(checkForVictory())
@@ -52,90 +52,79 @@ class GameState: ObservableObject
             turn = turn == Tile.Cross ? Tile.Circle : Tile.Cross
         }
 
-        if(checkForTie())
-        {
-            resetBoard()
-        }
+//        if(checkForTie())
+//        {
+//            resetBoard()
+//
+//        }
+//
+//
+//        func checkForTie() -> Bool
+//        {
+//                for _ in board
+//                {
+//                    if(board[piece].tile == Tile.Empty){
+//                        return false
+//                    }
+//                }
+//
+//                return true
+//        }
     }
-
-    func checkForTie() -> Bool
-    {
-        for row in board
+        func checkForVictory() -> Bool
         {
-            for cell in row
+            if(isTurnTile(0) && isTurnTile(1) && isTurnTile(2))
             {
-                if cell.tile == Tile.Empty
-                {
-                    return false
-                }
+                return true
             }
-        }
-
-        return true
-    }
-
-    func checkForVictory() -> Bool
-    {
-        // vertical victory
-        if isTurnTile(0, 0) && isTurnTile(1, 0) && isTurnTile(2, 0)
-        {
-            return true
-        }
-        if isTurnTile(0, 1) && isTurnTile(1, 1) && isTurnTile(2, 1)
-        {
-            return true
-        }
-        if isTurnTile(0, 2) && isTurnTile(1, 2) && isTurnTile(2, 2)
-        {
-            return true
-        }
-
-        // horizontal victory
-        if isTurnTile(0, 0) && isTurnTile(0, 1) && isTurnTile(0, 2)
-        {
-            return true
-        }
-        if isTurnTile(1, 0) && isTurnTile(1, 1) && isTurnTile(1, 2)
-        {
-            return true
-        }
-        if isTurnTile(2, 0) && isTurnTile(2, 1) && isTurnTile(2, 2)
-        {
-            return true
-        }
-
-        // diagonal victory
-        if isTurnTile(0, 0) && isTurnTile(1, 1) && isTurnTile(2, 2)
-        {
-            return true
-        }
-        if isTurnTile(0, 2) && isTurnTile(1, 1) && isTurnTile(2, 0)
-        {
-            return true
-        }
-
-
-        return false
-    }
-
-    func isTurnTile(_ row: Int,_ column: Int) -> Bool
-    {
-        return board[row][column].tile == turn
-    }
-
-    func resetBoard()
-    {
-        var newBoard = [[Cell]]()
-
-        for _ in 0...2
-        {
-            var row = [Cell]()
-            for _ in 0...2
+            if(isTurnTile(3) && isTurnTile(4) && isTurnTile(5))
             {
-                row.append(Cell(tile: Tile.Empty))
+                return true
             }
-            newBoard.append(row)
+            if(isTurnTile(6) && isTurnTile(7) && isTurnTile(8))
+            {
+                return true
+            }
+            if(isTurnTile(0) && isTurnTile(3) && isTurnTile(6))
+            {
+                return true
+            }
+            if(isTurnTile(1) && isTurnTile(4) && isTurnTile(7))
+            {
+                return true
+            }
+            if(isTurnTile(2) && isTurnTile(5) && isTurnTile(8))
+            {
+                return true
+            }
+            if(isTurnTile(0) && isTurnTile(4) && isTurnTile(8))
+            {
+                return true
+            }
+            if(isTurnTile(2) && isTurnTile(4) && isTurnTile(6))
+            {
+                return true
+            }
+            
+
+            return false
         }
-        board = newBoard
+
+        func isTurnTile(_ piece: Int) -> Bool
+         {
+             return board[piece].tile == turn
+         }
+
+
+        func resetBoard()
+        {
+            var newBoard = [Cell]()
+            
+            for _ in 0...8
+            {
+                newBoard.append(Cell(tile: Tile.Empty))
+            }
+            board = newBoard
+        }
     }
-}
+

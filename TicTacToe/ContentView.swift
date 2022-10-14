@@ -34,63 +34,56 @@ enum Tile
 
 struct ContentView: View {
     @StateObject var gameState = GameState()
+    let columns = [GridItem(.flexible()),
+                   GridItem(.flexible()),
+                   GridItem(.flexible())]
 
-       var body: some View
-       {
-           let borderSize = CGFloat(5)
+    var body: some View {
+
+        Text(String(format: "Tic Tac Toe"))
+         .font(.system(size: 60))
+         .bold()
+        Text(String(format: "Score"))
+         .underline() .font(.title)
+         .bold()
+        Text(String(format: "Circles: %d", gameState.circlesScore))
+         .font(.title)
+         .bold()
+        Text(String(format: "Crosses: %d", gameState.crossesScore))
+         .font(.title)
+         .bold()
 
 
-           Spacer()
-           Text(String(format: "Circles: %d", gameState.circlesScore))
-               .font(.title)
-               .bold()
-               .padding()
+           VStack{
+               LazyVGrid(columns: columns){
+                ForEach(0..<9) {
+                    i in
+                    let cell = gameState.board[i]
+                    Text(cell.displayTile())
+                        .font(.largeTitle)
+                        .bold()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)                             .aspectRatio(1, contentMode: .fit)
+                        .background(Color.white)
+                        .onTapGesture{
+                            gameState.placeTile(i)
+                        }
+                
+                }
 
-           Text(String(format: "Crosses: %d", gameState.crossesScore))
-               .font(.title)
-               .bold()
-               .padding()
-
-           VStack(spacing: borderSize)
-           {
-               ForEach(0...2, id: \.self)
-               {
-                   row in
-                   HStack(spacing: borderSize)
-                   {
-                       ForEach(0...2, id: \.self)
-                       {
-                           column in
-
-                           let cell = gameState.board[row][column]
-
-                           Text(cell.displayTile())
-                               .font(.system(size: 60))
-                               .bold()
-                               .frame(maxWidth: .infinity, maxHeight: .infinity)
-                               .aspectRatio(1, contentMode: .fit)
-                               .background(Color.white)
-                               .onTapGesture {
-                                   gameState.placeTile(row, column)
-                               }
-                       }
-                   }
-
-               }
-           }
+            }
+        }
            .background(Color.black)
            .padding()
            .alert(isPresented: $gameState.showAlert)
-           {
-               Alert(
-                   title: Text(gameState.alertMessage),
-                   dismissButton: .default(Text("Ok"))
-                   {
-                       gameState.resetBoard()
-                   }
-               )
-           }
-
+            {
+                Alert(
+                    title: Text(gameState.alertMessage),
+                    dismissButton: .default(Text("Another Game"))
+                    {
+                    gameState.resetBoard()
+                    }
+                )
+            }
 
            Spacer()
        }
