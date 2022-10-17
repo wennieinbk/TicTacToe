@@ -22,6 +22,18 @@ struct Cell
                 return ""
         }
     }
+    func displayColor() -> Color
+    {
+        switch(tile)
+        {
+            case Tile.Cross:
+                return Color.black
+            case Tile.Circle:
+                return Color.pink
+            default:
+                return Color.black
+        }
+    }
 }
 
 enum Tile
@@ -36,14 +48,14 @@ struct ContentView: View {
     @StateObject var gameState = GameState()
     let columns = [GridItem(.flexible()),
                    GridItem(.flexible()),
-                   GridItem(.flexible())]
-
+                   GridItem(.flexible()),]
+    let size = 9
     var body: some View {
 
         Text(String(format: "Tic Tac Toe"))
          .font(.system(size: 60))
          .bold()
-        Text(String(format: "Score"))
+        Text("Score")
          .underline() .font(.title)
          .bold()
         Text(String(format: "Circles: %d", gameState.circlesScore))
@@ -56,14 +68,15 @@ struct ContentView: View {
 
            VStack{
                LazyVGrid(columns: columns){
-                ForEach(0..<9) {
-                    i in
+                   ForEach(0..<size) { i in
                     let cell = gameState.board[i]
                     Text(cell.displayTile())
                         .font(.largeTitle)
                         .bold()
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)                             .aspectRatio(1, contentMode: .fit)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .aspectRatio(1, contentMode: .fit)
                         .background(Color.white)
+                        .foregroundColor(cell.displayColor())
                         .onTapGesture{
                             gameState.placeTile(i)
                         }
