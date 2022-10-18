@@ -9,16 +9,14 @@ import Foundation
 
 class GameState: ObservableObject
 {
-    @Published var board = [Cell]()
-    @Published var emptyTiles = 9
+    @Published var board = [[Cell]]()
+    @Published var size = 3
+    @Published var emptyTiles = 0
     @Published var turn = Tile.Cross
     @Published var circlesScore = 0
     @Published var crossesScore = 0
     @Published var showAlert = false
     @Published var alertMessage = "Tie"
-
-    var n = 3
-
 
 
     init()
@@ -26,17 +24,17 @@ class GameState: ObservableObject
         resetBoard()
     }
 
-    func placeTile(_ piece: Int)
+    func placeTile(_ row: Int, _ column: Int)
     {
-        if(board[piece].tile != Tile.Empty)
+        if(board[row][column].tile != Tile.Empty)
         {
             return
         }
 
-        board[piece].tile = turn == Tile.Cross ? Tile.Cross : Tile.Circle
+        board[row][column].tile = turn == Tile.Cross ? Tile.Cross : Tile.Circle
         emptyTiles -= 1
 
-        if(checkForVictory())
+        if(checkVertically()||checkHorizontally()||checkDiagnally()||checkAntiDiagnally())
         {
             if(turn == Tile.Cross)
             {
@@ -62,80 +60,94 @@ class GameState: ObservableObject
         }
     }
 
+    func checkVertically() -> Bool
+        {
+            for column in 0..<size {
+                var count = 0
+                for row in 0..<size{
+                    count+=valueOfTurnTile(row,column)
+                    if(abs(count) == size){
+                        return true
+                    }
+                }
 
-    func checkForVictory() -> Bool
+            }
+            return false
+        }
+    func checkHorizontally() -> Bool
     {
-        for i in 0..<n {
-            if(isTurnTile(i*n) && isTurnTile(i*n+1) && isTurnTile(i*n+2))
-            {
-                return true
+        for row in 0..<size {
+            var count = 0
+            for column in 0..<size{
+                count+=valueOfTurnTile(row,column)
+                if(abs(count) == size){
+                    return true
+                }
             }
         }
-        for i in 0..<n {
-            if(isTurnTile(i) && isTurnTile(i+n) && isTurnTile(i+n*2))
-            {
-                return true
-            }
-        }
-        if(isTurnTile(0) && isTurnTile(4) && isTurnTile(8))
-        {
-            return true
-        }
-        if(isTurnTile(2) && isTurnTile(4) && isTurnTile(6))
-        {
-            return true
-        }
-
-//        if(isTurnTile(0) && isTurnTile(1) && isTurnTile(2))
-//        {
-//            return true
-//        }
-//        if(isTurnTile(3) && isTurnTile(4) && isTurnTile(5))
-//        {
-//            return true
-//        }
-//        if(isTurnTile(6) && isTurnTile(7) && isTurnTile(8))
-//        {
-//            return true
-//        }
-//        if(isTurnTile(0) && isTurnTile(3) && isTurnTile(6))
-//        {
-//            return true
-//        }
-//        if(isTurnTile(1) && isTurnTile(4) && isTurnTile(7))
-//        {
-//            return true
-//        }
-//        if(isTurnTile(2) && isTurnTile(5) && isTurnTile(8))
-//        {
-//            return true
-//        }
-//        if(isTurnTile(0) && isTurnTile(4) && isTurnTile(8))
-//        {
-//            return true
-//        }
-//        if(isTurnTile(2) && isTurnTile(4) && isTurnTile(6))
-//        {
-//            return true
-//        }
-
         return false
     }
-
-    func isTurnTile(_ piece: Int) -> Bool
+    func checkDiagnally() -> Bool
         {
-            return board[piece].tile == turn
+            var count = 0
+            for row in 0..<size{
+                for column in 0..<size{
+                    if(row == column){
+                        count+=valueOfTurnTile(row,column)
+                    }
+
+                }
+            }
+            if(abs(count) == size){
+                return true
+            }
+
+            return false
+        }
+    func checkAntiDiagnally() -> Bool
+        {
+            var count = 0
+            for row in 0..<size{
+                for column in 0..<size{
+                    if(row + column == size - 1){
+                        count+=valueOfTurnTile(row,column)
+                    }
+
+                }
+            }
+            if(abs(count) == size){
+                return true
+            }
+            return false
+        }
+
+    func valueOfTurnTile(_ row: Int,_ column: Int) -> Int
+        {
+//            if(board[row][column].tile != Tile.Empty){
+//                return board[row][column].tile) == Tile.Cross ? 1 : -1
+//            }
+            if(board[row][column].tile) == Tile.Cross{
+                return 1
+            } else if (board[row][column].tile) == Tile.Circle{
+                return -1
+            }
+            return 0
         }
     func resetBoard()
     {
-        var newBoard = [Cell]()
+        var newBoard = [[Cell]]()
 
-        for _ in 0...8
-        {
-            newBoard.append(Cell(tile: Tile.Empty))
-        }
+        for _ in 0...size
+                {
+                    var row = [Cell]()
+                    for _ in 0...size
+                    {
+                        row.append(Cell(tile: Tile.Empty))
+                    }
+                    newBoard.append(row)
+                }
         board = newBoard
-        emptyTiles = 9
+        emptyTiles = size * size
     }
 }
 
