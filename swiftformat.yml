@@ -1,0 +1,18 @@
+
+# You can find the rules here https://github.com/nicklockwood/SwiftFormat/blob/master/Rules.md
+
+# Disabled Rules
+--disable spaceAroundComments
+--disable blankLinesAtStartOfScope
+--disable trailingCommas
+--disable strongOutlets
+--disable initCoderUnavailable
+--disable sortedImports
+--disable wrapMultilineStatementBraces
+--disable enumNamespaces
+--disable redundantType
+
+# Enabled Rules
+--enable isEmpty
+
+--swiftversion 5.0

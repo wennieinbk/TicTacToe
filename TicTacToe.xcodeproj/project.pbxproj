@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		2C93E8BD28F8429F00E33D37 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C93E8BC28F8429F00E33D37 /* GameState.swift */; };
+		2CD2E38328FF15F100D33AAB /* TicTacToeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4D6C528F719F8001B5B22 /* TicTacToeTests.swift */; };
+		2CD2E38528FF1BC200D33AAB /* swiftformat.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2CD2E38428FF1BC200D33AAB /* swiftformat.yml */; };
+		2CD2E38628FF1BC200D33AAB /* swiftformat.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2CD2E38428FF1BC200D33AAB /* swiftformat.yml */; };
 		2CD4D6B528F719F5001B5B22 /* TicTacToeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4D6B428F719F5001B5B22 /* TicTacToeApp.swift */; };
 		2CD4D6B728F719F5001B5B22 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4D6B628F719F5001B5B22 /* ContentView.swift */; };
 		2CD4D6B928F719F7001B5B22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CD4D6B828F719F7001B5B22 /* Assets.xcassets */; };
 		2CD4D6BC28F719F7001B5B22 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CD4D6BB28F719F7001B5B22 /* Preview Assets.xcassets */; };
-		2CD4D6C628F719F8001B5B22 /* TicTacToeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4D6C528F719F8001B5B22 /* TicTacToeTests.swift */; };
 		2CD4D6D028F719F8001B5B22 /* TicTacToeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4D6CF28F719F8001B5B22 /* TicTacToeUITests.swift */; };
 		2CD4D6D228F719F8001B5B22 /* TicTacToeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4D6D128F719F8001B5B22 /* TicTacToeUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
@@ -36,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		2C93E8BC28F8429F00E33D37 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		2CD2E38428FF1BC200D33AAB /* swiftformat.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftformat.yml; sourceTree = "<group>"; };
 		2CD4D6B128F719F5001B5B22 /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD4D6B428F719F5001B5B22 /* TicTacToeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeApp.swift; sourceTree = "<group>"; };
 		2CD4D6B628F719F5001B5B22 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -76,6 +79,7 @@
 		2CD4D6A828F719F5001B5B22 = {
 			isa = PBXGroup;
 			children = (
+				2CD2E38428FF1BC200D33AAB /* swiftformat.yml */,
 				2CD4D6B328F719F5001B5B22 /* TicTacToe */,
 				2CD4D6C428F719F8001B5B22 /* TicTacToeTests */,
 				2CD4D6CE28F719F8001B5B22 /* TicTacToeUITests */,
@@ -157,6 +161,7 @@
 				2CD4D6BD28F719F8001B5B22 /* Sources */,
 				2CD4D6BE28F719F8001B5B22 /* Frameworks */,
 				2CD4D6BF28F719F8001B5B22 /* Resources */,
+				2CCB65EC28FF0C62003321EE /* Swift Format */,
 			);
 			buildRules = (
 			);
@@ -243,6 +248,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CD2E38528FF1BC200D33AAB /* swiftformat.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,10 +256,32 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CD2E38628FF1BC200D33AAB /* swiftformat.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2CCB65EC28FF0C62003321EE /* Swift Format */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Swift Format";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftformat >/dev/null; then\n# Ando project is not located at the root of the repo. This means we need to tell swiftlint to go to the project root to get the swiftlint file.\n swiftformat . --config swiftformat.yml\nelse\n echo \"warning: SwiftFormat not installed, install it through: brew install swiftformat\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2CD4D6AD28F719F5001B5B22 /* Sources */ = {
@@ -270,7 +298,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CD4D6C628F719F8001B5B22 /* TicTacToeTests.swift in Sources */,
+				2CD2E38328FF15F100D33AAB /* TicTacToeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
