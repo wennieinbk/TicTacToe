@@ -7,42 +7,8 @@
 
 import SwiftUI
 
-struct Cell {
-    var tile: Tile
-    func displayTile() -> String {
-        switch tile {
-        case Tile.Cross:
-            return "X"
-        case Tile.Circle:
-            return "O"
-        default:
-            return ""
-        }
-    }
-
-    func displayColor() -> Color {
-        switch tile {
-        case Tile.Cross:
-            return Color.black
-        case Tile.Circle:
-            return Color.pink
-        default:
-            return Color.black
-        }
-    }
-}
-
-enum Tile {
-    case Circle
-    case Cross
-    case Empty
-}
-
-struct ContentView: View {
+struct TicTacToeView: View {
     @StateObject var gameState = GameState()
-    let columns = [GridItem(.flexible()),
-                   GridItem(.flexible()),
-                   GridItem(.flexible()),]
     var body: some View {
 
         Text(String(format: "Tic Tac Toe"))
@@ -94,8 +60,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct TicTacToeView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        TicTacToeView()
     }
 }
