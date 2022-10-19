@@ -9,7 +9,7 @@ import Foundation
 
 class GameState: ObservableObject {
     @Published var board = [[Cell]]()
-    @Published var size = 5
+    @Published var size = 3
     @Published var emptyTiles = 0
     @Published var turn = Tile.Cross
     @Published var circlesScore = 0
