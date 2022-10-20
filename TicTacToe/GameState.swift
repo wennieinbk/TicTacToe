@@ -16,10 +16,15 @@ class GameState: ObservableObject {
     @Published var crossesScore = 0
     @Published var showAlert = false
     @Published var alertMessage = "Tie"
+    
 
     init() {
         resetBoard()
     }
+    func turnText() -> String
+        {
+            return turn == Tile.Cross ? "X's turn" : "O's turn"
+        }
 
     func placeTile(_ row: Int, _ column: Int) {
         if board[row][column].tile != Tile.Empty {
