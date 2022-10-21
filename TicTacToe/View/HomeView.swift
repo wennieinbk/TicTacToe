@@ -8,52 +8,34 @@
 import SwiftUI
 
 struct HomeView: View {
-    //@State private var size = 0
     var body: some View {
-        
-        NavigationView{
-            VStack{
-                Text("A").font(.system(size: 45)).bold().foregroundColor(.red)
-                + Text("R").font(.system(size: 45)).bold().foregroundColor(.blue)+Text("C")
-                    .font(.system(size: 45)).bold().foregroundColor(.red)+Text("A")
-                    .font(.system(size: 45)).bold().foregroundColor(.blue)+Text("D")
-                    .font(.system(size: 45)).bold().foregroundColor(.red)+Text("E")
-                    .font(.system(size: 45)).bold().foregroundColor(.blue)
+        let fontSize = CGFloat(45)
+        NavigationView {
+            VStack {
+                HStack {
+                    Text("Game Time").font(.system(size: fontSize)).bold()
+                    Image(systemName: "flag.2.crossed").font(.system(size: fontSize))
+                }
+                HStack {
+                    NavigationLink(destination: TicTacToeView()) {
+                        Text("Tic Tac Toe")
+                            .padding()
+                            .frame(width: 150, height: 200)
+                            .background(Rectangle()
+                                .foregroundColor(Color.clear)
+                                .border(Color.blue, width: 1))
+                    }
 
-                    
-                    //                        Button("Tic Tac Toe") {
-                    //                            print("Tic Tac Toe")
-                    //                        }
-                    //                        .padding()
-                    //                        .clipShape(Capsule())
-                    //                        .frame(width: 150, height: 200)
-                    //                        .background(Color.clear)
-                    //                        .border(Color.blue, width: 1)
-                    ////                        TextField("Enter the side length of board", value: $size, format: .number)
-                    ////                            .textFieldStyle(.roundedBorder).frame(width: 60, height: nil)
-                    ////
-                    ////                        Text("With \(size) * \(size).")
-                    //                        NavigationLink(destination: TicTacToeView(), label: {Text("play")})
-//                    //                    }
-//                    Button("Guss Number") {
-//                        print("Button pressed!")
-//                    }
-//                    .padding()
-//                    .clipShape(RoundedRectangle())
-//                    .frame(width: 150, height: 200)
-//                    .background(Color.clear)
-//                    .border(Color.red, width: 1)
-//                    Button("Guss Number") {
-//                        print("Button pressed!")}
-//                    .padding()
-//                    .clipShape(RoundedRectangle())
-//                    .frame(width: 150, height: 200)
-//                    .background(Color.clear)
-//                    .border(Color.red, width: 1)
-                    
-                    
-
-                
+                    NavigationLink(destination: GuessNumberView()) {
+                        Text("Guess Number")
+                            .foregroundColor(.red)
+                            .padding()
+                            .frame(width: 150, height: 200)
+                            .background(Rectangle()
+                                .foregroundColor(Color.clear)
+                                .border(Color.red, width: 1))
+                    }
+                }
             }
         }
     }

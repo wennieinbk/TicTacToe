@@ -17,14 +17,13 @@ class GameState: ObservableObject {
     @Published var crossesScore = 0
     @Published var showAlert = false
     @Published var alertMessage = "Tie"
-    //@Binding var size: Int
+    // @Binding var size: Int
 
     init() {
         resetBoard()
     }
 
-    func turnText() -> String
-    {
+    func turnText() -> String {
         return turn == Tile.Cross ? "X's turn" : "O's turn"
     }
 
