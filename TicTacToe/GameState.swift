@@ -6,25 +6,27 @@
 //
 
 import Foundation
+import SwiftUI
 
 class GameState: ObservableObject {
     @Published var board = [[Cell]]()
-    @Published var size = 3
     @Published var emptyTiles = 0
+    @Published var size = 3
     @Published var turn = Tile.Cross
     @Published var circlesScore = 0
     @Published var crossesScore = 0
     @Published var showAlert = false
     @Published var alertMessage = "Tie"
-    
+    //@Binding var size: Int
 
     init() {
         resetBoard()
     }
+
     func turnText() -> String
-        {
-            return turn == Tile.Cross ? "X's turn" : "O's turn"
-        }
+    {
+        return turn == Tile.Cross ? "X's turn" : "O's turn"
+    }
 
     func placeTile(_ row: Int, _ column: Int) {
         if board[row][column].tile != Tile.Empty {
@@ -111,9 +113,9 @@ class GameState: ObservableObject {
     }
 
     func valueOfTurnTile(_ row: Int, _ column: Int) -> Int {
-//            if(board[row][column].tile != Tile.Empty){
-//                return board[row][column].tile) == Tile.Cross ? 1 : -1
-//            }
+        //            if(board[row][column].tile != Tile.Empty){
+        //                return board[row][column].tile) == Tile.Cross ? 1 : -1
+        //            }
         if (board[row][column].tile) == Tile.Cross {
             return 1
         } else if (board[row][column].tile) == Tile.Circle {

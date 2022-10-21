@@ -9,7 +9,9 @@ import SwiftUI
 
 struct TicTacToeView: View {
     @StateObject var gameState = GameState()
-    @Binding var size: Int
+//    init(size: Int) {
+//        gameState.size = size
+//    }
     var body: some View {
         Text("Score")
             .underline().font(.title)
@@ -26,10 +28,10 @@ struct TicTacToeView: View {
                     .padding()
 
         VStack {
-            ForEach(0 ..< size) {
+            ForEach(0 ..< gameState.size) {
                 row in
                 HStack {
-                    ForEach(0 ..< size) {
+                    ForEach(0 ..< gameState.size ) {
                         column in
                         let cell = gameState.board[row][column]
                         Text(cell.displayTile())
