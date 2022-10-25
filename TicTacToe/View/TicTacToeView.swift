@@ -9,11 +9,10 @@ import SwiftUI
 
 struct TicTacToeView: View {
     @StateObject var gameState = GameState()
+//    init(size: Int) {
+//        gameState.size = size
+//    }
     var body: some View {
-
-        Text(String(format: "Tic Tac Toe"))
-            .font(.system(size: 60))
-            .bold()
         Text("Score")
             .underline().font(.title)
             .bold()
@@ -23,6 +22,10 @@ struct TicTacToeView: View {
         Text(String(format: "Crosses: %d", gameState.crossesScore))
             .font(.title)
             .bold()
+        Text(gameState.turnText())
+            .font(.title)
+            .bold()
+            .padding()
 
         VStack {
             ForEach(0 ..< gameState.size) {
@@ -60,8 +63,8 @@ struct TicTacToeView: View {
     }
 }
 
-struct TicTacToeView_Previews: PreviewProvider {
-    static var previews: some View {
-        TicTacToeView()
-    }
-}
+// struct TicTacToeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TicTacToeView()
+//    }
+// }

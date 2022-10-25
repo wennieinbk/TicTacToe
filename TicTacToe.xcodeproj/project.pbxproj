@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C93712F29008C8100105DBC /* CellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C93712E29008C8100105DBC /* CellModel.swift */; };
+		2C6FCBC42900A967007F9A4C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6FCBC32900A967007F9A4C /* HomeView.swift */; };
+		2C71FF3D29024E35006A39E6 /* GuessNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C71FF3C29024E35006A39E6 /* GuessNumberView.swift */; };
+		2C71FF3E29024E5F006A39E6 /* Celll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C93712E29008C8100105DBC /* Celll.swift */; };
+		2C71FF402902CB18006A39E6 /* NumberState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C71FF3F2902CB18006A39E6 /* NumberState.swift */; };
 		2C93E8BD28F8429F00E33D37 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C93E8BC28F8429F00E33D37 /* GameState.swift */; };
 		2CD2E38328FF15F100D33AAB /* TicTacToeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4D6C528F719F8001B5B22 /* TicTacToeTests.swift */; };
 		2CD2E38528FF1BC200D33AAB /* swiftformat.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2CD2E38428FF1BC200D33AAB /* swiftformat.yml */; };
@@ -38,8 +41,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C6FCBC32900A967007F9A4C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		2C71FF3C29024E35006A39E6 /* GuessNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessNumberView.swift; sourceTree = "<group>"; };
+		2C71FF3F2902CB18006A39E6 /* NumberState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberState.swift; sourceTree = "<group>"; };
 		2C93712829006D0100105DBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		2C93712E29008C8100105DBC /* CellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellModel.swift; sourceTree = "<group>"; };
+		2C93712E29008C8100105DBC /* Celll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Celll.swift; sourceTree = "<group>"; };
 		2C93E8BC28F8429F00E33D37 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		2CD2E38428FF1BC200D33AAB /* swiftformat.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftformat.yml; sourceTree = "<group>"; };
 		2CD4D6B128F719F5001B5B22 /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,18 +85,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2C93712D290089A000105DBC /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				2C93712E29008C8100105DBC /* CellModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		2C9371302900955000105DBC /* View */ = {
 			isa = PBXGroup;
 			children = (
 				2CD4D6B628F719F5001B5B22 /* TicTacToeView.swift */,
+				2C6FCBC32900A967007F9A4C /* HomeView.swift */,
+				2C71FF3C29024E35006A39E6 /* GuessNumberView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -120,12 +120,13 @@
 			isa = PBXGroup;
 			children = (
 				2C9371302900955000105DBC /* View */,
-				2C93712D290089A000105DBC /* Model */,
 				2C93712829006D0100105DBC /* Info.plist */,
+				2C93712E29008C8100105DBC /* Celll.swift */,
 				2CD4D6B428F719F5001B5B22 /* TicTacToeApp.swift */,
 				2C93E8BC28F8429F00E33D37 /* GameState.swift */,
 				2CD4D6B828F719F7001B5B22 /* Assets.xcassets */,
 				2CD4D6BA28F719F7001B5B22 /* Preview Content */,
+				2C71FF3F2902CB18006A39E6 /* NumberState.swift */,
 			);
 			path = TicTacToe;
 			sourceTree = "<group>";
@@ -311,8 +312,11 @@
 			files = (
 				2CD4D6B728F719F5001B5B22 /* TicTacToeView.swift in Sources */,
 				2C93E8BD28F8429F00E33D37 /* GameState.swift in Sources */,
-				2C93712F29008C8100105DBC /* CellModel.swift in Sources */,
+				2C6FCBC42900A967007F9A4C /* HomeView.swift in Sources */,
+				2C71FF3D29024E35006A39E6 /* GuessNumberView.swift in Sources */,
 				2CD4D6B528F719F5001B5B22 /* TicTacToeApp.swift in Sources */,
+				2C71FF3E29024E5F006A39E6 /* Celll.swift in Sources */,
+				2C71FF402902CB18006A39E6 /* NumberState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
