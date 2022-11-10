@@ -18,7 +18,7 @@ struct HomeView: View {
                 }
                 HStack {
                     NavigationLink(destination: TicTacToeView()) {
-                        Text("Tic Tac Toe")
+                        Text("Tic Tac Toe Game")
                             .padding()
                             .frame(width: 150, height: 200)
                             .background(Rectangle()

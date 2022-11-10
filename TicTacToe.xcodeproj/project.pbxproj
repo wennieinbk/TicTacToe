@@ -124,9 +124,9 @@
 				2C93712E29008C8100105DBC /* Celll.swift */,
 				2CD4D6B428F719F5001B5B22 /* TicTacToeApp.swift */,
 				2C93E8BC28F8429F00E33D37 /* GameState.swift */,
+				2C71FF3F2902CB18006A39E6 /* NumberState.swift */,
 				2CD4D6B828F719F7001B5B22 /* Assets.xcassets */,
 				2CD4D6BA28F719F7001B5B22 /* Preview Content */,
-				2C71FF3F2902CB18006A39E6 /* NumberState.swift */,
 			);
 			path = TicTacToe;
 			sourceTree = "<group>";

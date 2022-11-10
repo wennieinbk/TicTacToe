@@ -92,7 +92,6 @@ class GameState: ObservableObject {
         if abs(count) == size {
             return true
         }
-
         return false
     }
 
@@ -112,9 +111,6 @@ class GameState: ObservableObject {
     }
 
     func valueOfTurnTile(_ row: Int, _ column: Int) -> Int {
-        //            if(board[row][column].tile != Tile.Empty){
-        //                return board[row][column].tile) == Tile.Cross ? 1 : -1
-        //            }
         if (board[row][column].tile) == Tile.Cross {
             return 1
         } else if (board[row][column].tile) == Tile.Circle {
